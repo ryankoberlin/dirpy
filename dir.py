@@ -5,6 +5,10 @@ import os
 import stat
 from pathlib import Path
 
+if len(sys.argv) == 1:
+   print('provide a path as an argument ya knob')
+   sys.exit()
+
 x=sys.argv[1]
 y=[]
 i=''
