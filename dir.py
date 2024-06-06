@@ -5,13 +5,19 @@ import os
 import stat
 from pathlib import Path
 
-if len(sys.argv) == 1:
-   print('provide a path as an argument ya knob')
-   sys.exit()
+# TODO
+# Move to a main function
+# Add sanity checks to make sure single arg exists
 
-x=sys.argv[1]
-y=[]
-i=''
+def help():
+    print('''
+    Usage:
+    dir.py takes only one argument.
+
+    Example:
+    ./dir.py /home/share/user/Documents/abc/foo.bar
+    ''')
+    sys.exit(1)
 
 def getperms(filepath):
     st = os.stat(filepath)
@@ -25,6 +31,12 @@ def getugid(filepath):
     retstr = uid + ":" + gid
     return retstr
 
+if len(sys.argv) != 2:
+    help()
+
+x=sys.argv[1]
+y=[]
+i=''
 for dir in x.split('/'):
     if dir == '':
         continue
